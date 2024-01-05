@@ -26,7 +26,7 @@ class AnggotaController extends Controller
 
         $anggotaBaru = Anggota::create($data);
 
-        return redirect(route('anggota.index'));
+        return redirect(route('anggota.index'))->with('success', 'Data Anggota Berhasil di Tambahkan');
     }
 
     public function edit($id){
@@ -46,5 +46,12 @@ class AnggotaController extends Controller
         ]);
 
         return redirect(route('anggota.index'))->with('success', 'Data Anggota Berhasil Diperbarui');
+    }
+
+    public function destroy($id){
+        $anggota = Anggota::find($id);
+        $anggota->delete();
+
+        return redirect(route('anggota.index'))->with('success', 'Data Anggota Berhasil di Hapus');
     }
 }

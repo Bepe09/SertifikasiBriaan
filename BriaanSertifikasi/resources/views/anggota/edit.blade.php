@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pendaftaran Anggota</title>
+    <title>Edit Anggota</title>
 </head>
 <body>
-    <h1>Edit Anggota</h1>
+    <h1>Edit Data Anggota</h1>
     <form method="post" action="{{route('anggota.update', ['anggota' => $anggota])}}">
         @csrf
         @method('put')

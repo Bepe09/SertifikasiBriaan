@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnggotaController;
+use App\Http\Controllers\KoleksiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +24,14 @@ Route::get('/anggota/pendaftaran', [AnggotaController::class, 'create'])->name('
 Route::post('/anggota', [AnggotaController::class, 'store'])->name('anggota.store');
 Route::get('/anggota/{anggota}/edit', [AnggotaController::class, 'edit'])->name('anggota.edit');
 Route::put('/anggota/{anggota}/update', [AnggotaController::class, 'update'])->name('anggota.update');
+Route::delete('/anggota/{anggota}/delete', [AnggotaController::class, 'destroy'])->name('anggota.destroy');
+
+Route::get('/koleksi', [KoleksiController::class, 'index'])->name('koleksi.index');
+Route::get('/koleksi/menambahkan', [KoleksiController::class, 'create'])->name('koleksi.create');
+Route::post('/koleksi', [KoleksiController::class, 'store'])->name('koleksi.store');
+Route::get('/koleksi/{koleksi}/edit', [KoleksiController::class, 'edit'])->name('koleksi.edit');
+Route::put('/koleksi/{koleksi}/update', [KoleksiController::class, 'update'])->name('koleksi.update');
+Route::delete('/koleksi/{koleksi}/delete', [KoleksiController::class, 'destroy'])->name('koleksi.destroy');
+
+
+
