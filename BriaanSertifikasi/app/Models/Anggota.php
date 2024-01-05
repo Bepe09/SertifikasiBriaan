@@ -9,6 +9,8 @@ class Anggota extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id_anggota';
+
     protected $fillable=[
         'nama',
         'tanggal_lahir',

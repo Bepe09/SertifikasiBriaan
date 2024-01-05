@@ -21,3 +21,5 @@ Route::get('/', function () {
 Route::get('/anggota', [AnggotaController::class, 'index'])->name('anggota.index');
 Route::get('/anggota/pendaftaran', [AnggotaController::class, 'create'])->name('anggota.create');
 Route::post('/anggota', [AnggotaController::class, 'store'])->name('anggota.store');
+Route::get('/anggota/{anggota}/edit', [AnggotaController::class, 'edit'])->name('anggota.edit');
+Route::put('/anggota/{anggota}/update', [AnggotaController::class, 'update'])->name('anggota.update');

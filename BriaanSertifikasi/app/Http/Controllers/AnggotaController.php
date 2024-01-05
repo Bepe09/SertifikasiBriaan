@@ -28,4 +28,23 @@ class AnggotaController extends Controller
 
         return redirect(route('anggota.index'));
     }
+
+    public function edit($id){
+        $anggota = Anggota::find($id);
+        //dd($anggota);
+        return view('anggota.edit', compact('anggota'));
+    }
+
+    public function update($id, Request $request){
+        $data = Anggota::find($id);
+
+        $data->update([
+            'nama' => $request->nama,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'alamat' => $request->alamat,
+            'nomor_telepon' => $request->nomor_telepon
+        ]);
+
+        return redirect(route('anggota.index'))->with('success', 'Data Anggota Berhasil Diperbarui');
+    }
 }

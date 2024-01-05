@@ -16,6 +16,7 @@
                 <th>Tanggal Lahir</th>
                 <th>Alamat</th>
                 <th>Nomor Telepon</th>
+                <th>Edit</th>
             </tr>
             @foreach ($anggota as $anggota)
                 <tr>
@@ -24,9 +25,20 @@
                     <td>{{$anggota->tanggal_lahir}}</td>
                     <td>{{$anggota->alamat}}</td>
                     <td>{{$anggota->nomor_telepon}}</td>
+                    <td>
+                        <a href="{{route('anggota.edit', $anggota->id_anggota)}}">Edit</a>
+                    </td>
                 </tr>
             @endforeach
         </table>
+    </div>
+    <br>
+    <div>
+        @if (session()->has('success'))
+            <div>
+                {{session('success')}}
+            </div>
+        @endif
     </div>
 </body>
 </html>
