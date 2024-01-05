@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnggotaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/anggota', [AnggotaController::class, 'index'])->name('anggota.index');
+Route::get('/anggota/pendaftaran', [AnggotaController::class, 'create'])->name('anggota.create');
+Route::post('/anggota', [AnggotaController::class, 'store'])->name('anggota.store');
