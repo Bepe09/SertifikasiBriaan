@@ -40,16 +40,26 @@
 </head>
 <body>
     <h1>Peminjaman Buku</h1>
-    <form method="post" action="{{route('anggota.store')}}">
+    <form method="post" action="{{route('peminjaman.store')}}">
         @csrf
         @method('post')
         <div>
             <label>Judul Buku</label>
-            <input type="text" name="judul" placeholder="Judul Buku"/>
+            <select name="id_buku" id="id_buku" class="form-select">
+                <option value="" selected disabled>Pilih Buku</option>
+                @foreach ($koleksi as $koleksi)
+                    <option value="{{$koleksi->id_buku}}">{{$koleksi->judul}}</option>
+                @endforeach
+            </select>
         </div>
         <div>
             <label>Nama Peminjam</label>
-            <input type="text" name="nama" placeholder="Nama Peminjam"/>
+            <select name="id_anggota" id="id_anggota" class="form-select">
+                <option value="" selected disabled>Nama Anggota</option>
+                @foreach ($anggota as $anggota)
+                    <option value="{{$anggota->id_anggota}}">{{$anggota->nama}}</option>
+                @endforeach
+            </select>
         </div>
         <div>
             <label>Tanggal Pinjam</label>

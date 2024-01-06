@@ -23,8 +23,8 @@ class PeminjamanController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'id_buku' => 'required|exist:koleksi,id_buku',
-            'id_peminjam' => 'required|exist:anggota,id_anggota',
+            'id_buku' =>'required|exists:koleksis,id_buku',
+            'id_anggota' => 'required|exists:anggotas,id_anggota',
             'tanggal_peminjaman' => 'required',
             'tanggal_pengembalian' => 'required'
         ]);
