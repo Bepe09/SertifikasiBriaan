@@ -61,6 +61,10 @@
         .active {
             background-color: #04AA6D;
         }
+
+        img{
+            max-width: 20%;
+        }
     </style>
 </head>
 <body>
@@ -95,7 +99,7 @@
                 <tr>
                     <td>{{$koleksi->id_buku}}</td>
                     <td>{{$koleksi->judul}}</td>
-                    <td><img src="{{ URL::to('/') }}/assets/{{ $koleksi->gambar }}" class="img-fluid" alt="Food Image"></td>
+                    <td><img src="{{ URL::to('/') }}/assets/{{ $koleksi->gambar }}" class="img-fluid" alt="Book Image"></td>
                     <td>{{$koleksi->pengarang}}</td>
                     <td>{{$koleksi->penerbit}}</td>
                     <td>{{$koleksi->tahun_terbit}}</td>

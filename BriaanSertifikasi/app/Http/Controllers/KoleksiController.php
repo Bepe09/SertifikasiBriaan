@@ -22,23 +22,32 @@ class KoleksiController extends Controller
     }
 
     public function store(Request $request){
-        $file = $request->file;
+        $file = $request->gambar;
         $filename = $file ? $file->getClientOriginalName() : null;
 
-        $data = $request->validate([
-            'judul' => 'required',
-            'gambar' => 'required',
-            'pengarang' => 'required',
-            'penerbit' => 'required',
-            'tahun_terbit' => 'required',
-            'jumlah_tersedia' => 'required|numeric'
+        // $data = $request->validate([
+        //     'judul' => 'required',
+        //     'gambar' => 'required',
+        //     'pengarang' => 'required',
+        //     'penerbit' => 'required',
+        //     'tahun_terbit' => 'required',
+        //     'jumlah_tersedia' => 'required|numeric'
+        // ]);
+
+        Koleksi::create([
+            'judul' => $request->judul,
+            'gambar' => $filename,
+            'pengarang' => $request->pengarang,
+            'penerbit' => $request->penerbit,
+            'tahun_terbit' => $request->tahun_terbit,
+            'jumlah_tersedia' => $request->jumlah_tersedia
         ]);
 
         if ($file) {
-            $request->file->move('assets/', $filename);
+            $request->gambar->move('assets/', $filename);
         }
 
-        $koleksiBaru = Koleksi::create($data);
+        // $koleksiBaru = Koleksi::create($data);
 
         return redirect(route('koleksi.index'))->with('success', 'Buku Baru Berhasil di Tambahkan');
     }
@@ -51,14 +60,14 @@ class KoleksiController extends Controller
 
     public function update($id, Request $request){
 
-        $file = $request->file;
+        $file = $request->gambar;
         $filename = $file ? $file->getClientOriginalName() : null;
 
         $data = Koleksi::find($id);
 
         $data->update([
             'judul' => $request->judul,
-            'gambar' => $request->gambar,
+            'gambar' => $filename,
             'pengarang' => $request->pengarang,
             'penerbit' => $request->penerbit,
             'tahun_terbit' => $request->tahun_terbit,
@@ -66,7 +75,7 @@ class KoleksiController extends Controller
         ]);
 
         if ($file) {
-            $request->file->move('assets/', $filename);
+            $request->gambar->move('assets/', $filename);
         }
 
         return redirect(route('koleksi.index'))->with('success', 'Data Buku Berhasil Diperbarui');

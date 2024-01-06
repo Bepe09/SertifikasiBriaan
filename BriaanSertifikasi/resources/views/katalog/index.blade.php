@@ -61,6 +61,10 @@
         .active {
             background-color: #04AA6D;
         }
+
+        img{
+            max-width: 20%;
+        }
     </style>
 </head>
 <body>
