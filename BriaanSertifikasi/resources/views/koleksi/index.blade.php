@@ -121,7 +121,7 @@
                         <a href="{{route('koleksi.edit', $koleksi->id_buku)}}">Edit</a>
                     </td>
                     <td>
-                        <form method="post" action="{{route('koleksi.destroy', ['koleksi' => $koleksi])}}">
+                        <form method="post" action="{{route('koleksi.destroy', ['koleksi' => $koleksi])}}" onsubmit="return confirm('Are you sure you want to delete this data?')">
                             @csrf
                             @method('delete')
                             <input type="submit" value='Hapus Data'>

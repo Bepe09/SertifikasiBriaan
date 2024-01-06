@@ -119,7 +119,7 @@
                         <a href="{{ route('anggota.edit', $anggota->id_anggota) }}">Edit</a>
                     </td>
                     <td>
-                        <form method="post" action="{{ route('anggota.destroy', ['anggota' => $anggota]) }}">
+                        <form method="post" action="{{ route('anggota.destroy', ['anggota' => $anggota]) }}" onsubmit="return confirm('Are you sure you want to delete this data?')">
                             @csrf
                             @method('delete')
                             <input type="submit" value='Hapus Data'>

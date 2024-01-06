@@ -25,15 +25,6 @@ class KoleksiController extends Controller
         $file = $request->gambar;
         $filename = $file ? $file->getClientOriginalName() : null;
 
-        // $data = $request->validate([
-        //     'judul' => 'required',
-        //     'gambar' => 'required',
-        //     'pengarang' => 'required',
-        //     'penerbit' => 'required',
-        //     'tahun_terbit' => 'required',
-        //     'jumlah_tersedia' => 'required|numeric'
-        // ]);
-
         Koleksi::create([
             'judul' => $request->judul,
             'gambar' => $filename,
