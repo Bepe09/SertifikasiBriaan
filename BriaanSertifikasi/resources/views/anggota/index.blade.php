@@ -7,6 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Anggota</title>
     <style>
+        body {
+            background-color: #EFDECD;
+        }
+
         button {
             background-color: darkblue;
             border: 1px solid black;
@@ -15,9 +19,12 @@
 
         }
 
-
         table {
             border-collapse: collapse;
+            background-color: whitesmoke;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
         }
 
         table,
@@ -67,6 +74,10 @@
 
         .active {
             background-color: #04AA6D;
+        }
+
+        h1 {
+            text-align: center; /* Center the h1 element */
         }
     </style>
 </head>

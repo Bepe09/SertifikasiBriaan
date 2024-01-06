@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Peminjaman Buku</title>
+    <title>Edit Anggota</title>
     <style>
         body {
             background-color: #EFDECD;
@@ -45,16 +45,19 @@
 </head>
 
 <body>
-    <h1>Peminjaman Buku</h1>
-    <form method="post" action="{{ route('peminjaman.store') }}">
+    <h1>Edit Data Peminjaman</h1>
+    <form method="post" action="{{ route('peminjaman.update', ['peminjaman' => $peminjaman]) }}">
         @csrf
-        @method('post')
+        @method('put')
         <div>
             <label>Judul Buku</label>
             <select name="id_buku" id="id_buku" class="form-select">
                 <option value="" selected disabled>Pilih Buku</option>
                 @foreach ($koleksi as $koleksi)
-                    <option value="{{ $koleksi->id_buku }}">{{ $koleksi->judul }}</option>
+                    <option value="{{ $koleksi->id_buku }}"
+                        {{ $koleksi->id_buku == $peminjaman->id_buku ? 'selected' : '' }}>
+                        {{ $koleksi->judul }}
+                    </option>
                 @endforeach
             </select>
         </div>
@@ -63,52 +66,34 @@
             <select name="id_anggota" id="id_anggota" class="form-select">
                 <option value="" selected disabled>Nama Anggota</option>
                 @foreach ($anggota as $anggota)
-                    <option value="{{ $anggota->id_anggota }}">{{ $anggota->nama }}</option>
+                    <option value="{{ $anggota->id_anggota }}"
+                        {{ $anggota->id_anggota == $peminjaman->id_anggota ? 'selected' : '' }}>
+                        {{ $anggota->nama }}
+                    </option>
                 @endforeach
             </select>
         </div>
         <div>
             <label>Tanggal Pinjam</label>
-            <input type="date" name="tanggal_peminjaman" id="tanggal_peminjaman" oninput="setTanggalPengembalian()"/>
+            <input type="date" name="tanggal_peminjaman" id="tanggal_peminjaman"
+                value="{{ $peminjaman->tanggal_peminjaman }}" readonly />
         </div>
         <div>
             <label>Tanggal Kembali</label>
-            <input type="date" name="tanggal_pengembalian" id="tanggal_pengembalian" readonly />
+            <input type="date" name="tanggal_pengembalian" id="tanggal_pengembalian"
+                value="{{ $peminjaman->tanggal_pengembalian }}" required />
         </div>
         <div>
             <label>Status Pengembalian</label>
             <select name="status_pengembalian" id="status_pengembalian" class="form-select">
+                <option value="Sudah Kembali">Sudah Kembali</option>
                 <option value="Belum Kembali" selected>Belum Kembali</option>
             </select>
         </div>
         <div>
-            <input type="submit" value="Pinjamkan Koleksi" />
+            <input type="submit" value="Simpan Perubahan" />
         </div>
     </form>
-
-    <script>
-        function setTanggalPengembalian() {
-            // Mengamvil nilai tanggal peminjaman
-            var tanggalPeminjaman = document.getElementById('tanggal_peminjaman').value;
-
-            // Jika tanggal peminjaman tidak kosong
-            if (tanggalPeminjaman !== '') {
-                var datePeminjaman = new Date(tanggalPeminjaman);
-
-                // Menambah 7 hari ke tanggal peminjaman
-                datePeminjaman.setDate(datePeminjaman.getDate() + 7);
-
-                // Mengubah format tanggal menjadi 'yyyy-mm-dd'
-                var tanggalKembali = datePeminjaman.toISOString().slice(0, 10);
-
-                // Mengatur nilai pada input tanggal_pengembalian
-                document.getElementById('tanggal_pengembalian').value = tanggalKembali;
-            } else {
-                // Jika tanggal peminjaman kosong, reset nilai pada input tanggal_pengembalian
-                document.getElementById('tanggal_pengembalian').value = '';
-            }
-        }
-    </script>
 </body>
 
 </html>

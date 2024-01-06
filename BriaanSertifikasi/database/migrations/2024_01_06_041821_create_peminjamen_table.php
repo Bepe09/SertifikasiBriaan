@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_anggota')->unsigned();
             $table->date('tanggal_peminjaman');
             $table->date('tanggal_pengembalian');
+            $table->string('status_pengembalian');
             $table->timestamps();
 
             $table->foreign('id_buku')->references('id_buku')->on('koleksi')->onDelete('SET NULL');

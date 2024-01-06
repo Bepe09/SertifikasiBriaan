@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Daftar Peminjaman</title>
     <style>
+        body {
+            background-color: #EFDECD;
+        }
+
         button{
             background-color: darkblue;
             border: 1px solid black;
@@ -14,9 +18,12 @@
 
         }
 
-
         table {
             border-collapse: collapse;
+            background-color: whitesmoke;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
         }
         table, th, td {
             border: 1px solid black;
@@ -60,6 +67,10 @@
         .active {
             background-color: #04AA6D;
         }
+
+        h1 {
+            text-align: center; /* Center the h1 element */
+        }
     </style>
 </head>
 <body>
@@ -85,6 +96,8 @@
                 <th>Peminjam</th>
                 <th>Tanggal Peminjaman</th>
                 <th>Tanggal Kembali</th>
+                <th>Status Pengembalian</th>
+                <th>Edit</th>
             </tr>
             @foreach ($peminjaman as $peminjaman)
                 <tr>
@@ -93,6 +106,11 @@
                     <td>{{$peminjaman->anggota ? $peminjaman->anggota->nama: 'Nama Tidak Ada'}}</td>
                     <td>{{$peminjaman->tanggal_peminjaman}}</td>
                     <td>{{$peminjaman->tanggal_pengembalian}}</td>
+                    <td>{{$peminjaman->status_pengembalian}}</td>
+                    <td>
+                        <a href="{{route('peminjaman.edit', $peminjaman->id_peminjaman)}}">Edit</a>
+                    </td>
+                </tr>
                 </tr>
             @endforeach
         </table>

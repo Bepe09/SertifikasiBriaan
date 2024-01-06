@@ -37,6 +37,8 @@ Route::delete('/koleksi/{koleksi}/delete', [KoleksiController::class, 'destroy']
 Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
 Route::get('/peminjaman/pinjam', [PeminjamanController::class, 'create'])->name('peminjaman.create');
 Route::post('/peminjaman', [PeminjamanController::class, 'store'])->name('peminjaman.store');
+Route::get('/peminjaman/{peminjaman}/edit', [PeminjamanController::class, 'edit'])->name('peminjaman.edit');
+Route::put('/peminjaman/{peminjaman}/update', [PeminjamanController::class, 'update'])->name('peminjaman.update');
 
 Route::get('/katalog', [KoleksiController::class, 'katalogindex'])->name('katalog.index');
 

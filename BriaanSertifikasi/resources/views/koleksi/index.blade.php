@@ -7,6 +7,10 @@
     <title>Koleksi</title>
 
     <style>
+        body {
+            background-color: #EFDECD;
+        }
+
         button{
             background-color: darkblue;
             border: 1px solid black;
@@ -15,9 +19,12 @@
 
         }
 
-
         table {
             border-collapse: collapse;
+            background-color: whitesmoke;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
         }
         table, th, td {
             border: 1px solid black;
@@ -63,7 +70,12 @@
         }
 
         img{
-            max-width: 20%;
+            max-width: 25%;
+            max-height: 25%;
+        }
+
+        h1 {
+            text-align: center; /* Center the h1 element */
         }
     </style>
 </head>
@@ -99,7 +111,7 @@
                 <tr>
                     <td>{{$koleksi->id_buku}}</td>
                     <td>{{$koleksi->judul}}</td>
-                    <td><img src="{{ URL::to('/') }}/assets/{{ $koleksi->gambar }}" class="img-fluid" alt="Book Image"></td>
+                    <td><img src="{{ URL::to('/') }}/assets/{{ $koleksi->gambar }}" class="img-fluid" alt="Book Image" style="max-width: 100px; max-height: 150px; width: 100%;"></td>
                     <td>{{$koleksi->pengarang}}</td>
                     <td>{{$koleksi->penerbit}}</td>
                     <td>{{$koleksi->tahun_terbit}}</td>

@@ -54,7 +54,6 @@ class KoleksiController extends Controller
 
     public function edit($id){
         $koleksi = Koleksi::find($id);
-        //dd($anggota);
         return view('koleksi.edit', compact('koleksi'));
     }
 

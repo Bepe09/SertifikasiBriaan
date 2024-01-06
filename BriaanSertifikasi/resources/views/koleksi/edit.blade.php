@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Edit Koleksi</title>
     <style>
+        body {
+            background-color: #EFDECD;
+        }
+
         input[type=text] {
           width: 100%;
           padding: 12px 20px;

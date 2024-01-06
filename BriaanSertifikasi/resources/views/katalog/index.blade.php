@@ -4,31 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Koleksi</title>
-
+    <title>Katalog</title>
     <style>
-        button{
+        body {
+            background-color: #EFDECD;
+        }
+
+        button {
             background-color: darkblue;
             border: 1px solid black;
             color: white;
             padding: 3px;
-
         }
 
-
-        table {
-            border-collapse: collapse;
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 100px;
+            padding: 50px;
         }
-        table, th, td {
+
+        .book-card {
             border: 1px solid black;
-        }
-        th, td {
             padding: 10px;
+            text-align: center;
+            background-color: whitesmoke;
         }
-        th {
-            background-color: #4CAF50;
-            color: white;
+
+        .book-card img {
+            max-width: 100%;
+            height: 200px; /* Set a fixed height for the image */
+            object-fit: cover; /* Maintain aspect ratio while covering the container */
         }
+
         ul {
             list-style-type: none;
             margin: 0;
@@ -62,8 +70,12 @@
             background-color: #04AA6D;
         }
 
-        img{
+        img {
             max-width: 20%;
+        }
+
+        h1 {
+            text-align: center; /* Center the h1 element */
         }
     </style>
 </head>
@@ -75,29 +87,18 @@
     </nav>
     <h1>Koleksi Buku</h1>
     <br>
-    <div>
-        <table border="1">
-            <tr>
-                <th>ID Buku</th>
-                <th>Judul Buku</th>
-                <th>Gambar</th>
-                <th>Pengarang</th>
-                <th>Penerbit</th>
-                <th>Tahun Terbit</th>
-                <th>Jumlah Tersedia</th>
-            </tr>
-            @foreach ($koleksi as $koleksi)
-                <tr>
-                    <td>{{$koleksi->id_buku}}</td>
-                    <td>{{$koleksi->judul}}</td>
-                    <td><img src="{{ URL::to('/') }}/assets/{{ $koleksi->gambar }}" class="img-fluid" alt="Food Image"></td>
-                    <td>{{$koleksi->pengarang}}</td>
-                    <td>{{$koleksi->penerbit}}</td>
-                    <td>{{$koleksi->tahun_terbit}}</td>
-                    <td>{{$koleksi->jumlah_tersedia}}</td>
-                </tr>
-            @endforeach
-        </table>
+    <div class="book-grid">
+        @foreach ($koleksi as $koleksi)
+            <div class="book-card">
+                <h4>ID Buku: {{$koleksi->id_buku}}</h4>
+                <h4>Judul Buku: {{$koleksi->judul}}</h4>
+                <img src="{{ URL::to('/') }}/assets/{{ $koleksi->gambar }}" class="img-fluid" alt="Book Image">
+                <p>Pengarang: {{$koleksi->pengarang}}</p>
+                <p>Penerbit: {{$koleksi->penerbit}}</p>
+                <p>Tahun Terbit: {{$koleksi->tahun_terbit}}</p>
+                <p>Jumlah Tersedia: {{$koleksi->jumlah_tersedia}}</p>
+            </div>
+        @endforeach
     </div>
     <br>
     <div>
