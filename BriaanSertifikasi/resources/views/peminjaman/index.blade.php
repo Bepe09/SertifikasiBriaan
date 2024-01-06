@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Anggota</title>
+    <title>Daftar Peminjaman</title>
     <style>
-        button {
+        button{
             background-color: darkblue;
             border: 1px solid black;
             color: white;
@@ -19,23 +18,16 @@
         table {
             border-collapse: collapse;
         }
-
-        table,
-        th,
-        td {
+        table, th, td {
             border: 1px solid black;
         }
-
-        th,
-        td {
+        th, td {
             padding: 10px;
         }
-
         th {
             background-color: #4CAF50;
             color: white;
         }
-
         ul {
             list-style-type: none;
             margin: 0;
@@ -70,50 +62,37 @@
         }
     </style>
 </head>
-
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <ul>
             <li><a href="/katalog">Katalog</a></li>
             <li><a href="/koleksi">Koleksi</a></li>
-            <li><a class="active" href="/anggota">Anggota</a></li>
-            <li><a href="/peminjaman">Peminjaman</a></li>
+            <li><a href="/anggota">Anggota</a></li>
+            <li><a class="active" href="/peminjaman">Peminjaman</a></li>
             <li style="float:right"><a>Admin</a></li>
         </ul>
     </nav>
-    <h1>List Anggota</h1>
+    <h1>Daftar Peminjaman</h1>
     <div>
-        <a href="{{ route('anggota.create') }}"><button>Daftarkan Anggota</button></a>
+        <a href="{{route('peminjaman.create')}}"><button>Peminjaman Koleksi</button></a>
     </div>
     <br>
     <div>
         <table border="1">
             <tr>
-                <th>ID Anggota</th>
-                <th>Nama</th>
-                <th>Tanggal Lahir</th>
-                <th>Alamat</th>
-                <th>Nomor Telepon</th>
-                <th>Edit</th>
-                <th>Hapus Data</th>
+                <th>ID Peminjaman</th>
+                <th>Judul Buku</th>
+                <th>Peminjam</th>
+                <th>Tanggal Peminjaman</th>
+                <th>Tanggal Kembali</th>
             </tr>
-            @foreach ($anggota as $anggota)
+            @foreach ($peminjaman as $peminjaman)
                 <tr>
-                    <td>{{ $anggota->id_anggota }}</td>
-                    <td>{{ $anggota->nama }}</td>
-                    <td>{{ $anggota->tanggal_lahir }}</td>
-                    <td>{{ $anggota->alamat }}</td>
-                    <td>{{ $anggota->nomor_telepon }}</td>
-                    <td>
-                        <a href="{{ route('anggota.edit', $anggota->id_anggota) }}">Edit</a>
-                    </td>
-                    <td>
-                        <form method="post" action="{{ route('anggota.destroy', ['anggota' => $anggota]) }}">
-                            @csrf
-                            @method('delete')
-                            <input type="submit" value='Hapus Data'>
-                        </form>
-                    </td>
+                    <td>{{$peminjaman->id_peminjaman}}</td>
+                    <td>{{$peminjaman->koleksi ? $peminjaman->koleksi->judul: 'Buku Tidak Ada'}}</td>
+                    <td>{{$peminjaman->anggota ? $peminjaman->anggota->nama: 'Nama Tidak Ada'}}</td>
+                    <td>{{$peminjaman->tanggal_peminjaman}}</td>
+                    <td>{{$peminjaman->tanggal_pengembalian}}</td>
                 </tr>
             @endforeach
         </table>
@@ -122,10 +101,9 @@
     <div>
         @if (session()->has('success'))
             <div>
-                {{ session('success') }}
+                {{session('success')}}
             </div>
         @endif
     </div>
 </body>
-
 </html>

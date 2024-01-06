@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit Anggota</title>
+    <title>Peminjaman Buku</title>
     <style>
         input[type=text] {
           width: 100%;
@@ -39,28 +39,28 @@
         </style>
 </head>
 <body>
-    <h1>Edit Data Anggota</h1>
-    <form method="post" action="{{route('anggota.update', ['anggota' => $anggota])}}">
+    <h1>Peminjaman Buku</h1>
+    <form method="post" action="{{route('anggota.store')}}">
         @csrf
-        @method('put')
+        @method('post')
         <div>
-            <label>Nama</label>
-            <input type="text" name="nama" placeholder="Nama" value="{{$anggota->nama}}"/>
+            <label>Judul Buku</label>
+            <input type="text" name="judul" placeholder="Judul Buku"/>
         </div>
         <div>
-            <label>Tanggal Lahir</label>
-            <input type="date" name="tanggal_lahir" value="{{$anggota->tanggal_lahir}}"/>
+            <label>Nama Peminjam</label>
+            <input type="text" name="nama" placeholder="Nama Peminjam"/>
         </div>
         <div>
-            <label>Alamat</label>
-            <input type="text" name="alamat" placeholder="alamat" value="{{$anggota->alamat}}"/>
+            <label>Tanggal Pinjam</label>
+            <input type="date" name="tanggal_peminjaman"/>
         </div>
         <div>
-            <label>Nomor Telepon</label>
-            <input type="text" name="nomor_telepon" placeholder="08xxxxxxxx" value="{{$anggota->nomor_telepon}}"/>
+            <label>Tanggal Kembali</label>
+            <input type="date" name="tanggal_pengembalian"/>
         </div>
         <div>
-            <input type="submit" value="Simpan Perubahan"/>
+            <input type="submit" value="Pinjamkan Koleksi"/>
         </div>
     </form>
 </body>

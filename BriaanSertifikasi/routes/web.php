@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\KoleksiController;
+use App\Http\Controllers\PeminjamanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,12 @@ Route::post('/koleksi', [KoleksiController::class, 'store'])->name('koleksi.stor
 Route::get('/koleksi/{koleksi}/edit', [KoleksiController::class, 'edit'])->name('koleksi.edit');
 Route::put('/koleksi/{koleksi}/update', [KoleksiController::class, 'update'])->name('koleksi.update');
 Route::delete('/koleksi/{koleksi}/delete', [KoleksiController::class, 'destroy'])->name('koleksi.destroy');
+
+Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
+Route::get('/peminjaman/pinjam', [PeminjamanController::class, 'create'])->name('peminjaman.create');
+Route::post('/peminjaman', [PeminjamanController::class, 'store'])->name('peminjaman.store');
+
+Route::get('/katalog', [KoleksiController::class, 'katalogindex'])->name('katalog.index');
 
 
 

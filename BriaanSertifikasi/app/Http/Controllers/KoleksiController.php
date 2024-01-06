@@ -12,11 +12,19 @@ class KoleksiController extends Controller
         return view('koleksi.index', ['koleksi' => $koleksi]);
     }
 
+    public function katalogindex(){
+        $koleksi = Koleksi::all();
+        return view('katalog.index', ['koleksi' => $koleksi]);
+    }
+
     public function create(){
         return view('koleksi.create');
     }
 
     public function store(Request $request){
+        $file = $request->file;
+        $filename = $file ? $file->getClientOriginalName() : null;
+
         $data = $request->validate([
             'judul' => 'required',
             'gambar' => 'required',
@@ -25,6 +33,10 @@ class KoleksiController extends Controller
             'tahun_terbit' => 'required',
             'jumlah_tersedia' => 'required|numeric'
         ]);
+
+        if ($file) {
+            $request->file->move('assets/', $filename);
+        }
 
         $koleksiBaru = Koleksi::create($data);
 
@@ -38,6 +50,10 @@ class KoleksiController extends Controller
     }
 
     public function update($id, Request $request){
+
+        $file = $request->file;
+        $filename = $file ? $file->getClientOriginalName() : null;
+
         $data = Koleksi::find($id);
 
         $data->update([
@@ -48,6 +64,10 @@ class KoleksiController extends Controller
             'tahun_terbit' => $request->tahun_terbit,
             'jumlah_tersedia' => $request->jumlah_tersedia
         ]);
+
+        if ($file) {
+            $request->file->move('assets/', $filename);
+        }
 
         return redirect(route('koleksi.index'))->with('success', 'Data Buku Berhasil Diperbarui');
     }
